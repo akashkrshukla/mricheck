@@ -7,7 +7,7 @@ The `urlpatterns` list routes URLs to views. For more information please see:
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-
+admin.autodiscover()
 urlpatterns = [
     # Examples:
     # url(r'^blog/', include('blog.urls', namespace='blog')),
