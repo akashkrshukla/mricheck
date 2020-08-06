@@ -12,5 +12,12 @@ from random import randint
 
 def uploadImage(request):
     res = {}
-    print("hello")
+    try:
+        data = request.FILES.get('image')
+        rec_n = ImageScans()
+        rec_n.image = data
+        rec_n.save()
+        res['status'] = 1
+    except:
+        res['status'] = -1
     return JsonResponse(res)
