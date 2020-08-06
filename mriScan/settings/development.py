@@ -23,11 +23,24 @@ LOGOUT_REDIRECT_URL = 'core_login'
 # ##### DATABASE CONFIGURATION ############################
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': join(PROJECT_ROOT, 'run', 'dev.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mri_scan',
+        'USER': 'akash',
+        'PASSWORD': 'ShuklA778@',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+
     }
 }
 
 # ##### APPLICATION CONFIGURATION #########################
 
-INSTALLED_APPS = DEFAULT_APPS
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'imagescans.apps.ImageScansConfig',
+]

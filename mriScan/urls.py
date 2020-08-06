@@ -7,7 +7,11 @@ The `urlpatterns` list routes URLs to views. For more information please see:
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-admin.autodiscover()
+from django.urls import re_path
+admin.site.site_header = "Mri-Scan Admin"
+admin.site.site_title = "Mri-Scan Admin Portal"
+admin.site.index_title = "Welcome to Mri-Scan Admin Portal"
+
 urlpatterns = [
     # Examples:
     # url(r'^blog/', include('blog.urls', namespace='blog')),
@@ -19,4 +23,7 @@ urlpatterns = [
 
     # enable the admin interface
     url(r'^admin/', admin.site.urls),
+    # adding the upload utility
+    re_path('images/', include('imagescans.urls'))
+
 ]
