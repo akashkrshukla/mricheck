@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.shortcuts import render
 from django.http import JsonResponse
 from .models import ImageScans
+from .services import Neuralnetwork
 import json
 from random import randint
 
@@ -12,6 +13,7 @@ from random import randint
 
 def uploadImage(request):
     res = {}
+    model = Neuralnetwork()
     try:
         data = request.FILES.get('image')
         rec_n = ImageScans()
