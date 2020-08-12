@@ -39,12 +39,6 @@ sys.path.append(normpath(join(PROJECT_ROOT, 'apps')))
 
 # these are the apps
 DEFAULT_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
 ]
 
 # Middlewares
