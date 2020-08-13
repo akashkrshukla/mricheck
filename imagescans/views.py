@@ -15,9 +15,8 @@ from tensorflow.keras.utils import to_categorical
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 
-
 ###################
-#library dependencies
+# library dependencies
 from imutils import paths
 import matplotlib.pyplot as plt
 import numpy as np
@@ -34,7 +33,6 @@ def uploadImage(request):
     rec_n.image = data
     rec_n.save()
     evaluateImage(Config.UPLOAD_IMAGE_PATH)
-    #evaluateImage(request.FILES.get(rec_n.image))
     res['status'] = 1
     # try:
     #     data = request.FILES.get('image')
@@ -47,8 +45,7 @@ def uploadImage(request):
     #     res['status'] = -1
     return JsonResponse(res)
 
+
 def evaluateImage(image):
     model = Neuralnetwork.loadModel()
-    print(model)
-    
-    
+    # model.summary()  # This can be used to show a detailed summary of model.
