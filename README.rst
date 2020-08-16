@@ -1,45 +1,24 @@
-django-project-skeleton
+MRI-Check Machine Learning based project
 =======================
 
-**django-project-skeleton** is my skeleton for Django projects. It provides a
-directory structure for Django projects during development and deployment.
-
+**MRI-Check** is a machine learning based project focusing on simplifying the process of detection of camcers in early stage by merely looking at the MRI-Scanned photographs of the patient.
 
 Meta
 ----
 
 Author:
-    Mischback
+    Akash Kumar Shukla
+    Aastha Sachan
+    Deepak Jaiswal
 
 Contributors:
-    `agirardeaudale <https://github.com/agirardeuadale>`_,
-    `jmrbcu <https://github.com/jmrbcu>`_
-
+    `akashkrshukla <https://github.com/akashkrshukla>`_,
+    
 Status:
-    maintained, in development
+    maintained,
+    Phase 1 completed.
+    Phase 2 for advancement under process.
 
 Version:
-    1.4
+    1.3
 
-Django Version:
-    3.0, 2.2, 2.1, 2.0, 1.11
-
-
-Usage
------
-
-To use this repository just use the ``template`` option of `django-admin
-<https://docs.djangoproject.com/en/2.2/ref/django-admin/#startproject>`_::
-
-    $ django-admin startproject --template=https://github.com/Mischback/django-project-skeleton/archive/master.zip [projectname]
-
-If you wish to automagically fill the ``apache2_vhost.sample`` the command is::
-
-    $ django-admin startproject --template=https://github.com/Mischback/django-project-skeleton/archive/master.zip --name apache2_vhost.sample [projectname]
-
-
-Documentation
--------------
-
-You can see the documentation over at **Read the Docs**: `django-project-skeleton
-<http://django-project-skeleton.readthedocs.org/en/stable/>`_
