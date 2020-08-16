@@ -20,7 +20,6 @@ def doLogin(request):
             if len(rec) > 0:
                 temp2['loginStatus'] = 1
                 temp = {}
-                temp['uid'] = rec[0].id
                 temp['name'] = rec[0].name
                 temp['email'] = rec[0].email
                 temp['mobile'] = rec[0].mobile
@@ -50,17 +49,11 @@ def doRegister(request):
                     res['status'] = -2
                 else:
                     rec_n = user()
-                    old_rec = user.objects.all()
-                    if len(old_rec) > 0:
-                        id_no=old_rec[0].id
-                    else:
-                        id_no = 1
-                    id_no2 = id_no + 1
-                    rec_n.user_id = id_no3
                     rec_n.name = data['fname']+ ' '+ data['lname']
                     rec_n.email = data['email']
                     rec_n.mobile = data['mobile']
                     rec_n.password= data['password']
+                    rec_n.user_id = data['mobile']
                     rec_n.save()
                     # sendOTP.initMsg(rec_n.mobile, rec_n.password)
                     # sendMail.send_mail_digest(data['email'], data['fname'], 'Registration Successful', rec_n.password)
