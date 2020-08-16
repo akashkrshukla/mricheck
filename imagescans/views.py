@@ -33,8 +33,8 @@ def uploadImage(request):
             summary  = evaluateImage(Config.UPLOAD_IMAGE_PATH, user_id)
             rec_n.analyzed_image = data
             rec_n.saveResults()
-            res['summary'] = summary
             res['status'] = 1
+            res['summary'] = summary
             return JsonResponse(res)
         else:
             res['status'] = 0
@@ -66,19 +66,31 @@ def evaluateImage(base_directory, user_id):
     model = Neuralnetwork.loadModel()
     predIdxs = model.predict(x= testGen)
     predIdxs = np.argmax(predIdxs, axis=1)
+    print(testGen.classes, 'test classes')
+    print(predIdxs,'predIdxs')
+    print(testGen.class_indices.keys(),'testGen.class_indices.keys()')
     # print(classification_report(testGen.classes, predIdxs,
     #                         target_names=testGen.class_indices.keys()))
 
     # compute the confusion matrix and and use it to derive the raw
     # accuracy, sensitivity, and specificity
-    cm = confusion_matrix(testGen.classes, predIdxs)
-    total = sum(sum(cm))
-    acc = (cm[0, 0] + cm[1, 1]) / total
-    sensitivity = cm[0, 0] / (cm[0, 0] + cm[0, 1])
-    specificity = cm[1, 1] / (cm[1, 0] + cm[1, 1])
-    output['accuracy'] = acc
-    output['sensitivity'] = sensitivity
-    output['specificity'] = specificity
+    output = {}
+    try:
+        cm = confusion_matrix(testGen.classes, predIdxs)
+        print(cm)
+        total = sum(sum(cm))
+        acc = (cm[0, 0] + cm[1, 1]) / total
+        sensitivity = cm[0, 0] / (cm[0, 0] + cm[0, 1])
+        specificity = cm[1, 1] / (cm[1, 0] + cm[1, 1])
+        print(acc)
+        print(specificity)
+        print(sensitivity)
+        output['accuracy'] = acc
+        output['sensitivity'] = sensitivity
+        output['specificity'] = specificity
+    except IndexError:
+        print('IndexError')
+    output['prediction'] = str(predIdxs[len(predIdxs)-1])
     return output
     # summmary  = model.summary()
     # return summmary
