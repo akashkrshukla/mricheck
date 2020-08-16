@@ -50,7 +50,7 @@ def doRegister(request):
                     res['status'] = -2
                 else:
                     rec_n = user()
-                    old_rec = user.objects.all().order_by('-created_on')
+                    old_rec = user.objects.all()
                     if len(old_rec) > 0:
                         id_no=old_rec[0].id
                     else:

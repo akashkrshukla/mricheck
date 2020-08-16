@@ -12,6 +12,9 @@ class user(models.Model):
     password = models.CharField(max_length=60)
     
     def __str__(self):
-        return str(self.name) + '-' + str(self.mobile)
+        return str(self.name)
 
+    class Meta:
+        managed = False
+        db_table = 'users_user'
 
