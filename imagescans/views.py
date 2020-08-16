@@ -6,6 +6,9 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import json
 from random import randint
 import os
+import numpy as np
+from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix
 
 
 def uploadImage(request):
@@ -27,9 +30,10 @@ def uploadImage(request):
             rec_n.image = data
             rec_n.user_id = user_id
             rec_n.save()
-            analyzedImage = evaluateImage(Config.UPLOAD_IMAGE_PATH, user_id)
+            summary  = evaluateImage(Config.UPLOAD_IMAGE_PATH, user_id)
             rec_n.analyzed_image = data
             rec_n.saveResults()
+            res['summary'] = summary
             res['status'] = 1
             return JsonResponse(res)
         else:
@@ -60,6 +64,21 @@ def evaluateImage(base_directory, user_id):
         batch_size=1)
 
     model = Neuralnetwork.loadModel()
-    #return #return analysedImage now.
-    # model.predict(x= testGen, steps=(totalTest // 1) + 1)
-    # model.summary()  # This can be used to show a detailed summary of model.
+    predIdxs = model.predict(x= testGen)
+    predIdxs = np.argmax(predIdxs, axis=1)
+    # print(classification_report(testGen.classes, predIdxs,
+    #                         target_names=testGen.class_indices.keys()))
+
+    # compute the confusion matrix and and use it to derive the raw
+    # accuracy, sensitivity, and specificity
+    cm = confusion_matrix(testGen.classes, predIdxs)
+    total = sum(sum(cm))
+    acc = (cm[0, 0] + cm[1, 1]) / total
+    sensitivity = cm[0, 0] / (cm[0, 0] + cm[0, 1])
+    specificity = cm[1, 1] / (cm[1, 0] + cm[1, 1])
+    output['accuracy'] = acc
+    output['sensitivity'] = sensitivity
+    output['specificity'] = specificity
+    return output
+    # summmary  = model.summary()
+    # return summmary
