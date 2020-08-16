@@ -25,6 +25,6 @@ def uploadImage(request):
 
 
 def evaluateImage(image):
-    model = Neuralnetwork()
+    model = Neuralnetwork.loadModel()
     model.summary()
     # model.summary()  # This can be used to show a detailed summary of model.
