@@ -43,4 +43,5 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'imagescans.apps.ImageScansConfig',
+    'users.apps.UsersConfig',
 ]

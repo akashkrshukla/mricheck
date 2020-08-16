@@ -24,6 +24,8 @@ urlpatterns = [
     # enable the admin interface
     url(r'^admin/', admin.site.urls),
     # adding the upload utility
-    re_path('images/', include('imagescans.urls'))
+    re_path('images/', include('imagescans.urls')),
+    re_path('user/', include('users.urls')),
+    
 
 ]
