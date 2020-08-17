@@ -9,7 +9,7 @@ import os
 import numpy as np
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
-
+import math
 
 def uploadImage(request):
     res = {}
@@ -85,9 +85,9 @@ def evaluateImage(base_directory, user_id):
         print(acc)
         print(specificity)
         print(sensitivity)
-        output['accuracy'] = acc
-        output['sensitivity'] = sensitivity
-        output['specificity'] = specificity
+        output['accuracy'] = acc if math.isnan(acc)== False else "NA"
+        output['sensitivity'] = sensitivity if math.isnan(sensitivity)== False else "NA"
+        output['specificity'] = specificity if math.isnan(specificity)== False else "NA"
     except IndexError:
         print('IndexError')
     output['prediction'] = str(predIdxs[len(predIdxs)-1])
