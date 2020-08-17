@@ -56,8 +56,11 @@ def doRegister(request):
                     rec_n.password= data['password']
                     rec_n.user_id = data['mobile']
                     rec_n.save()
-                    sendOTP.initMsg(rec_n.mobile, rec_n.password)
-                    sendMail.send_mail_digest(data['email'], data['fname'], 'Registration Successful', rec_n.password)
+                    try:
+                        sendOTP.initMsg(rec_n.mobile, rec_n.password)
+                        sendMail.send_mail_digest(data['email'], data['fname'], 'Registration Successful', rec_n.password)
+                    except:
+                        print(error)
                     res['status'] = 1
     except Exception as e:
         print(e)
