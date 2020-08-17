@@ -18,6 +18,7 @@ def doLogin(request):
             rec = user.objects.filter(mobile=data['mobile']).filter(password=data['password'])
             print(len(rec))
             if len(rec) > 0:
+                print(rec[0])
                 temp2['loginStatus'] = 1
                 temp = {}
                 temp['user_id'] = rec[0].user_id
