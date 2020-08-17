@@ -60,7 +60,7 @@ def doRegister(request):
                         sendOTP.initMsg(rec_n.mobile, rec_n.password)
                         sendMail.send_mail_digest(data['email'], data['fname'], 'Registration Successful', rec_n.password)
                     except:
-                        print(error)
+                        print('error')
                     res['status'] = 1
     except Exception as e:
         print(e)
